@@ -10,6 +10,8 @@ import { Container } from 'react-bootstrap'
 import ReservationList from './components/ReservationList'
 import ReservationForm from './components/ReservationForm'
 import Booking from './components/Booking'
+import Menu from './components/Menu'
+import PastaDetails from './components/PastaDetails'
 
 // we're going to introduce the routing system in Strivestaurant.
 // how does it work?
@@ -34,6 +36,8 @@ function App() {
           {/* this Routes components sets up a conditional redering */}
           <Route path="/" element={<Home />} />
           <Route path="/reservations" element={<Booking />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/details/:pastaId" element={<PastaDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* you'll get mounted ONE <Route /> per <Routes /> container */}

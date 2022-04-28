@@ -1,5 +1,5 @@
-import { Navbar, Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 // Link generates a special <a /> in the DOM, which doesn't trigger the browser's default behavior (reloading the page)
 
 const MyNavbar = ({ payoff }) => {
@@ -9,6 +9,18 @@ const MyNavbar = ({ payoff }) => {
   // {
   //     payoff: "The best pasta on the internet!"
   // }
+
+  const location = useLocation()
+  console.log('LOCATION OBJECT', location)
+  // the object useLocation() gives you back is filled with info
+  // about the current URL you're sitting in
+
+  const navigate = useNavigate()
+  // navigate is a function
+  // navigate('/reservations')
+  // navigate('/')
+
+  // both of these hooks can be obv called just in a functional component
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,18 +33,47 @@ const MyNavbar = ({ payoff }) => {
         <Nav className="ml-auto">
           {/* Nav.Link renders as an <a /> */}
           <Link to="/menu">
-            <div className="nav-link">Menu</div>
+            <div
+              className={
+                location.pathname === '/menu' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              Menu
+            </div>
           </Link>
           <Link to="/reservations">
-            <div className="nav-link">Reservations</div>
+            <div
+              className={`nav-link${
+                location.pathname === '/reservations' ? ' active' : ''
+              }`}
+            >
+              Reservations
+            </div>
           </Link>
           {/* Nav.Link outputs an anchor tag. Because I want to wrap it */}
           {/* in my own anchor tag, the Link component, I have to refactor */}
           {/* a little bit this react bootstrap component and output a div insted */}
           <Link to="/contact">
-            <div className="nav-link">Contact</div>
+            <div
+              className={
+                location.pathname === '/contact'
+                  ? 'nav-link active'
+                  : 'nav-link'
+              }
+            >
+              Contact
+            </div>
           </Link>
         </Nav>
+        <Button
+          variant="success"
+          onClick={() => {
+            console.log('please go home!')
+            navigate('/')
+          }}
+        >
+          GO HOME
+        </Button>
       </Navbar.Collapse>
     </Navbar>
   )
