@@ -28,8 +28,6 @@ const Home = () => {
 
   return (
     <Container className="my-3" fluid>
-      <ReservationList />
-      <ReservationForm />
       <Row className="justify-content-center">
         <Col md={6}>
           {/* this is how you can hide the reviews every time the slide changes */}
